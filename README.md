@@ -1,3 +1,4 @@
 # TikiGameJam2015
 
-Test!
+Here is a great tutorial for making a Pacman clone: http://noobtuts.com/unity/2d-pacman-game
+
