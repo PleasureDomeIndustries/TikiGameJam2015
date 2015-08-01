@@ -22,15 +22,23 @@ public class PlayerMove : NetworkBehaviour {
 
 		if (Input.GetKey (p1_up)) {
 			GetComponent<Rigidbody2D>().MovePosition(Vector2.MoveTowards(pos, pos + Vector2.up, p1_speed));
+			GetComponent<Animator>().SetFloat("DirY",1f);
+			GetComponent<Animator>().SetFloat("DirX",0);
 		}
 		if (Input.GetKey (p1_down)) {
 			GetComponent<Rigidbody2D>().MovePosition(Vector2.MoveTowards(pos, pos + Vector2.down, p1_speed));
+			GetComponent<Animator>().SetFloat("DirY",-1f);
+			GetComponent<Animator>().SetFloat("DirX",0);
 		}
 		if (Input.GetKey (p1_left)) {
 			GetComponent<Rigidbody2D>().MovePosition(Vector2.MoveTowards(pos, pos + Vector2.left, p1_speed));
+			GetComponent<Animator>().SetFloat("DirX",-1f);
+			GetComponent<Animator>().SetFloat("DirY",0);
 		}
 		if (Input.GetKey (p1_right)) {
 			GetComponent<Rigidbody2D>().MovePosition(Vector2.MoveTowards(pos, pos + Vector2.right, p1_speed));
+			GetComponent<Animator>().SetFloat("DirX",1f);
+			GetComponent<Animator>().SetFloat("DirY",0);
 		}
 
 		if (Input.GetAxis ("Fire3") > 0.5f) {
