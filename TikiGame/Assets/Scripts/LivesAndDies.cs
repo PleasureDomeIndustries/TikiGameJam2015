@@ -16,9 +16,11 @@ public class LivesAndDies : MonoBehaviour {
 	
 	}
 
-	public void TakeDamage(int damage) {
+	public void TakeDamage(int damage, Vector2 knockBack) {
+		Debug.Log ("taking " + damage + " damage, knockback = " + knockBack.ToString ());
 		Health -= damage;
 		CheckHealth ();
+		transform.position += (Vector3)knockBack;
 	}
 
 	void CheckHealth() {

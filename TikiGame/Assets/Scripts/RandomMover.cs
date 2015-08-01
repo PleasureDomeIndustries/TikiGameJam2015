@@ -53,7 +53,7 @@ public class RandomMover : MonoBehaviour
 
     void GetNewTarget()
     {
-        Debug.Log("Getting New Target");
+        //Debug.Log("Getting New Target");
         Vector2 currentPos = body.position;
         int direction = rand.Next(1, 4);
         float distance = Random.Range(minDist, maxDist);
