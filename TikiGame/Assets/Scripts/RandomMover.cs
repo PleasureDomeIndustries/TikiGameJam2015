@@ -4,19 +4,19 @@ using System.Collections;
 public class RandomMover : MonoBehaviour
 {
 
-    public float minDist;
-    public float maxDist;
+    float minDist = 1f;
+    float maxDist = 4f;
     Vector2 rayCorrection;
     Vector2 currentTarget;
     Vector2 currentRaycastTarget;
-    public float distancePerUnit = 0.1f;
+    float distancePerUnit = 0.1f;
     Rigidbody2D body;
     System.Random rand;
 
     // Use this for initialization
     void Start()
     {
-        rayCorrection = GetComponent<BoxCollider2D>().size;
+        rayCorrection = GetComponent<BoxCollider2D>().size / 2;
         rand = new System.Random();
         body = GetComponent<Rigidbody2D>();
         GetNewTarget();
@@ -30,7 +30,7 @@ public class RandomMover : MonoBehaviour
         }
 
         Vector2 moveto = Vector2.MoveTowards(body.position, currentTarget, distancePerUnit);
-        RaycastHit2D h = Physics2D.Raycast(currentRaycastTarget, body.position);
+        RaycastHit2D h = Physics2D.Linecast(currentRaycastTarget, body.position);
 
         Collider2D collider = h.collider;
         string collidername = "";
@@ -45,6 +45,7 @@ public class RandomMover : MonoBehaviour
         }
         else
         {
+            //Debug.Log("Discarding " + currentRaycastTarget + " due to collision with " + collidername);
             GetNewTarget();
         }
        
@@ -53,9 +54,9 @@ public class RandomMover : MonoBehaviour
 
     void GetNewTarget()
     {
-        Debug.Log("Getting New Target");
+        //Debug.Log("Getting New Target");
         Vector2 currentPos = body.position;
-        int direction = rand.Next(1, 4);
+        int direction = rand.Next(1, 5);
         float distance = Random.Range(minDist, maxDist);
         float x = 0f;
         float y = 0f;
