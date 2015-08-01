@@ -36,5 +36,7 @@ public class PlayerMove : NetworkBehaviour {
 		if (Input.GetAxis ("Fire3") > 0.5f) {
 			GetComponent<Thrower>().Throw(heldItem);
 		}
+
+
 	}
 }
