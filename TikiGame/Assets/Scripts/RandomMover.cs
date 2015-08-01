@@ -4,12 +4,12 @@ using System.Collections;
 public class RandomMover : MonoBehaviour
 {
 
-    public float minDist;
-    public float maxDist;
+    float minDist = 1f;
+    float maxDist = 4f;
     Vector2 rayCorrection;
     Vector2 currentTarget;
     Vector2 currentRaycastTarget;
-    public float distancePerUnit = 0.1f;
+    float distancePerUnit = 0.1f;
     Rigidbody2D body;
     System.Random rand;
 
