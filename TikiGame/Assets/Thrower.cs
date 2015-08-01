@@ -13,9 +13,9 @@ public class Thrower : MonoBehaviour {
 	void Update () {
 	}
 
-	public void Throw(GameObject original) {
-		GameObject thrown = (GameObject)Instantiate (original, transform.position, transform.rotation);
-		thrown.GetComponent<Rigidbody2D> ().AddForce (Vector2.right * force);
-		Destroy (thrown, 1.0f);
+	public void Throw(GameObject original, Vector2 direction) {
+		GameObject thrown = (GameObject)Instantiate (original, transform.position + (Vector3)direction.normalized * 5.0f, transform.rotation);
+		thrown.GetComponent<Rigidbody2D> ().AddForce (direction.normalized * force);
+		Destroy (thrown, 2.0f);
 	}
 }

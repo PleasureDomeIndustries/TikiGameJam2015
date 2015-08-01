@@ -11,6 +11,7 @@ public class PlayerMove : NetworkBehaviour {
 	public KeyCode p1_right = KeyCode.D;
 
 	public GameObject heldItem;
+	Vector2 throwDir = Vector2.down;
 
 	// Use this for initialization
 	void Start () {
@@ -42,7 +43,21 @@ public class PlayerMove : NetworkBehaviour {
 		}
 
 		if (Input.GetAxis ("Fire3") > 0.5f) {
-			GetComponent<Thrower>().Throw(heldItem);
+			//		Vector2 throwDir = new Vector2 (Input.GetAxis ("Mouse X"), Input.GetAxis ("Mouse Y"));
+			Debug.Log ("pos = " + pos);
+			Vector3	mouse = Input.mousePosition;
+			Debug.Log ("mouse at " + mouse);
+			if (mouse != null) {
+				Camera c = Camera.current;
+				if (c != null) {
+					Vector3 target = c.ScreenToWorldPoint(new Vector3(mouse.x, mouse.y, -c.transform.position.z));
+					Debug.Log ("target = " + target);
+					throwDir = (Vector2)target - pos;
+				}
+			}
+			Debug.Log("throwDir = " + throwDir);
+			
+			GetComponent<Thrower>().Throw(heldItem, throwDir);
 		}
 	}
 }
