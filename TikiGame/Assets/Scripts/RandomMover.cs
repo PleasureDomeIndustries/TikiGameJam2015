@@ -39,8 +39,30 @@ public class RandomMover : MonoBehaviour
             collidername = collider.name;
         }
 
-        if (collidername == "Skeleton")
+        if (collidername == this.name)
         {
+            float dirX = 0f;
+            float dirY = 0f;
+            Vector2 move =  moveto - body.position;
+            if (move.x > 0.05f)
+            {
+                dirX = 1;
+                dirY = 0;
+            } else if (move.x < -0.05f)
+                {
+                dirX = -1;
+                dirY = 0;
+            } else if (move.y > 0.05f)
+            {
+                dirX = 0;
+                dirY = 1;
+            } else if (move.y < -0.05f)
+            {
+                dirX = 0;
+                dirY = -1;
+            }
+            GetComponent<Animator>().SetFloat("DirX", dirX);
+            GetComponent<Animator>().SetFloat("DirY", dirY);
             body.MovePosition(moveto);
         }
         else
