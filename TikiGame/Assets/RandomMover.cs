@@ -6,85 +6,84 @@ public class RandomMover : MonoBehaviour
 
     public float minDist;
     public float maxDist;
+    Vector2 rayCorrection;
     Vector2 currentTarget;
+    Vector2 currentRaycastTarget;
     public float distancePerUnit = 0.1f;
     Rigidbody2D body;
+    System.Random rand;
 
     // Use this for initialization
     void Start()
     {
+        rayCorrection = GetComponent<BoxCollider2D>().size;
+        rand = new System.Random();
         body = GetComponent<Rigidbody2D>();
-        currentTarget = GetNewTarget();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Vector2.Distance((Vector2) body.position,currentTarget) < 0.1f)
-        {
-            Collider2D collider = null;
-            string collidername = "";
-
-            do
-            {
-                currentTarget = GetNewTarget();
-                RaycastHit2D dashit = Physics2D.Raycast(currentTarget, body.position);
-                collider = dashit.collider;
-                collidername = "";
-                if (collider != null)
-                {
-                    collidername = collider.name;
-                }
-
-            } while (collidername != "Skeleton");
-            
-        }
-
-        
-
-
+        GetNewTarget();
     }
 
     void FixedUpdate()
     {
+        if (Vector2.Distance((Vector2)body.position, currentTarget) < 0.1f)
+        {
+            GetNewTarget();
+        }
+
         Vector2 moveto = Vector2.MoveTowards(body.position, currentTarget, distancePerUnit);
-        Debug.Log("Current Position: " + body.position.ToString());
-        Debug.Log("Moving To: " + moveto.ToString());
-        Debug.Log("Destination: " + currentTarget.ToString());
+        RaycastHit2D h = Physics2D.Raycast(currentRaycastTarget, body.position);
 
+        Collider2D collider = h.collider;
+        string collidername = "";
+        if (collider != null)
+        {
+            collidername = collider.name;
+        }
 
-        body.MovePosition(moveto);
+        if (collidername == "Skeleton")
+        {
+            body.MovePosition(moveto);
+        }
+        else
+        {
+            GetNewTarget();
+        }
+       
     }
 
 
-    Vector2 GetNewTarget()
+    void GetNewTarget()
     {
         Debug.Log("Getting New Target");
         Vector2 currentPos = body.position;
-        int direction = (int)System.Math.Floor((double)Random.Range(1, 4));
+        int direction = rand.Next(1, 4);
         float distance = Random.Range(minDist, maxDist);
         float x = 0f;
         float y = 0f;
+        float xRay = 0f;
+        float yRay = 0f;
 
         switch (direction)
         {
             case 1:
                 x = distance;
+                xRay = distance + rayCorrection.x;
                 break;
 
             case 2:
                 x = -distance;
+                xRay = -distance - rayCorrection.x;
                 break;
             case 3:
                 y = distance;
+                yRay = distance + rayCorrection.y;
                 break;
             case 4:
                 y = -distance;
+                yRay = -distance - rayCorrection.y;
                 break;
         }
 
-        Vector2 newPos = currentPos + new Vector2(x, y);
-
-        return newPos;
+        currentTarget = currentPos + new Vector2(x, y);
+        currentRaycastTarget = currentPos + new Vector2(xRay, yRay);
     }
 }
