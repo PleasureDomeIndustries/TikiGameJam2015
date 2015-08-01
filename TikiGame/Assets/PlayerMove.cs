@@ -10,16 +10,13 @@ public class PlayerMove : NetworkBehaviour {
 	public KeyCode p1_left = KeyCode.A;
 	public KeyCode p1_right = KeyCode.D;
 
+	public GameObject heldItem;
+
 	// Use this for initialization
 	void Start () {
 	
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 	void FixedUpdate () {
 		Vector2 pos = (Vector2)this.transform.position;
 
@@ -34,6 +31,10 @@ public class PlayerMove : NetworkBehaviour {
 		}
 		if (Input.GetKey (p1_right)) {
 			GetComponent<Rigidbody2D>().MovePosition(Vector2.MoveTowards(pos, pos + Vector2.right, p1_speed));
+		}
+
+		if (Input.GetAxis ("Fire3") > 0.5f) {
+			GetComponent<Thrower>().Throw(heldItem);
 		}
 	}
 }
