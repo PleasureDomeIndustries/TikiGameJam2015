@@ -8,31 +8,59 @@ public class RandomMover : MonoBehaviour
     public float maxDist;
     Vector2 currentTarget;
     public float distancePerUnit = 0.1f;
+    Rigidbody2D body;
 
     // Use this for initialization
     void Start()
     {
-        Debug.Log("Starting Skeleton");
+        body = GetComponent<Rigidbody2D>();
         currentTarget = GetNewTarget();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ((Vector2) transform.position == currentTarget) currentTarget = GetNewTarget();
+        if (Vector2.Distance((Vector2) body.position,currentTarget) < 0.1f)
+        {
+            Collider2D collider = null;
+            string collidername = "";
 
-        Vector2 moveto = Vector2.MoveTowards(transform.position, currentTarget, distancePerUnit);
-        Debug.Log("Current Position: " & transform.position.ToString());
-        Debug.Log("Moving To: " & moveto.ToString());
-        GetComponent<Rigidbody2D>().MovePosition(moveto);
+            do
+            {
+                currentTarget = GetNewTarget();
+                RaycastHit2D dashit = Physics2D.Raycast(currentTarget, body.position);
+                collider = dashit.collider;
+                collidername = "";
+                if (collider != null)
+                {
+                    collidername = collider.name;
+                }
+
+            } while (collidername != "Skeleton");
+            
+        }
+
+        
 
 
     }
 
+    void FixedUpdate()
+    {
+        Vector2 moveto = Vector2.MoveTowards(body.position, currentTarget, distancePerUnit);
+        Debug.Log("Current Position: " + body.position.ToString());
+        Debug.Log("Moving To: " + moveto.ToString());
+        Debug.Log("Destination: " + currentTarget.ToString());
+
+
+        body.MovePosition(moveto);
+    }
+
+
     Vector2 GetNewTarget()
     {
         Debug.Log("Getting New Target");
-        Vector2 currentPos = transform.position;
+        Vector2 currentPos = body.position;
         int direction = (int)System.Math.Floor((double)Random.Range(1, 4));
         float distance = Random.Range(minDist, maxDist);
         float x = 0f;
