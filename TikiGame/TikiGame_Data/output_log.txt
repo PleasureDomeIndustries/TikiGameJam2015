@@ -1,0 +1,41 @@
+Initialize engine version: 5.1.2f1 (afd2369b692a)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 660   (ID=0x11c0)
+    Vendor:   NVIDIA
+    VRAM:     1989 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: F:\Programming\GitHub\TikiGameJam2015\TikiGame\TikiGame_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading F:\Programming\GitHub\TikiGameJam2015\TikiGame\TikiGame_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: F:\Programming\GitHub\TikiGameJam2015\TikiGame\TikiGame_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading F:\Programming\GitHub\TikiGameJam2015\TikiGame\TikiGame_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: F:\Programming\GitHub\TikiGameJam2015\TikiGame\TikiGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading F:\Programming\GitHub\TikiGameJam2015\TikiGame\TikiGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: F:\Programming\GitHub\TikiGameJam2015\TikiGame\TikiGame_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading F:\Programming\GitHub\TikiGameJam2015\TikiGame\TikiGame_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: F:\Programming\GitHub\TikiGameJam2015\TikiGame\TikiGame_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading F:\Programming\GitHub\TikiGameJam2015\TikiGame\TikiGame_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: F:\Programming\GitHub\TikiGameJam2015\TikiGame\TikiGame_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading F:\Programming\GitHub\TikiGameJam2015\TikiGame\TikiGame_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: F:\Programming\GitHub\TikiGameJam2015\TikiGame\TikiGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading F:\Programming\GitHub\TikiGameJam2015\TikiGame\TikiGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+- Completed reload, in  0.235 seconds
+desktop: 1920x1200 59Hz; virtual: 3600x1200 at -1680,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: F:\Programming\GitHub\TikiGameJam2015\TikiGame\TikiGame_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: F:\Programming\GitHub\TikiGameJam2015\TikiGame\TikiGame_Data\Managed\System.dll (this message is harmless)
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.370228 ms
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 166.
+Total: 0.268703 ms (FindLiveObjects: 0.021557 ms CreateObjectMapping: 0.022327 ms MarkObjects: 0.216348 ms  DeleteObjects: 0.006929 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.797138 ms
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 187.
+Total: 0.255230 ms (FindLiveObjects: 0.015013 ms CreateObjectMapping: 0.017708 ms MarkObjects: 0.210189 ms  DeleteObjects: 0.011548 ms)
+
