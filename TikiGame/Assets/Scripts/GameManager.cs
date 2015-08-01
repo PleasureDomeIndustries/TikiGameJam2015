@@ -38,5 +38,10 @@ public class GameManager : MonoBehaviour
     {
         Application.LoadLevel("Start");
     }
+
+    public void StartGame()
+    {
+        Application.LoadLevel("Level1");
+    }
 }
   
