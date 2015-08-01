@@ -19,6 +19,10 @@ public class PlayerMove : NetworkBehaviour {
 	}
 	
 	void FixedUpdate () {
+		if (Input.GetAxis ("Cancel") > 0.01f) {
+			Application.Quit();
+		}
+
 		Vector2 pos = (Vector2)this.transform.position;
 
 		if (Input.GetKey (p1_up)) {
