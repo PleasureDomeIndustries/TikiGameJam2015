@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("You win!");
             playing = false;
-            GUI.Box((new Rect((Screen.width / 2) - (YouWinWidth / 2), (Screen.height / 2) - (YouWinHeight / 2), YouWinWidth, YouWinHeight)), "YOU ARE THE WINNERZ!");
+            Application.LoadLevel("YouWin");
         }
     }
 
