@@ -5,6 +5,7 @@ public class LivesAndDies : MonoBehaviour {
 
 	public int Health;
 	public bool DisplayHealthBar;
+	public GameObject DeathEffect;
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +29,9 @@ public class LivesAndDies : MonoBehaviour {
 	}
 
 	void Die() {
+		if (DeathEffect != null)
+			Instantiate(DeathEffect, gameObject.transform.position, Quaternion.identity);
+		GetComponent<Animator>().SetBool("Dying",true);
 		Destroy (gameObject);
 	}
 }
