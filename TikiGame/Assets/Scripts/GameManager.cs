@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     bool playing = false;
     public bool gameInitialized = false;
     List<GameObject> enemies = new List<GameObject>();
+	int numToSpawn = 30;
+	int numSpawned = 0;
+
 
     int YouWinHeight = 100;
     int YouWinWidth = 100;
@@ -23,9 +26,15 @@ public class GameManager : MonoBehaviour
 
     public void RemoveEnemy(GameObject enemy)
     {
-        enemies.Remove(enemy);
+		if (numSpawned++ < numToSpawn) SpawnEnemy(enemy);
+//		if (numSpawned++ < numToSpawn) SpawnEnemy(enemy);
+		enemies.Remove(enemy);
         Debug.Log("ENEMIES: " + enemies.Count);
     }
+
+	void SpawnEnemy(GameObject enemy) {
+		Instantiate (enemy, enemy.transform.position, Quaternion.identity);
+	}
 
     public void OnGUI()
     {
