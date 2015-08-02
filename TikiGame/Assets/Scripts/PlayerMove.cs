@@ -46,7 +46,7 @@ public class PlayerMove : NetworkBehaviour {
 			GetComponent<Animator>().SetFloat("DirY",0);
 		}
 
-		if (Input.GetAxis ("Fire3") > 0.5f) {
+		if (Input.GetAxis ("Fire1") > 0.5f) {
 			//		Vector2 throwDir = new Vector2 (Input.GetAxis ("Mouse X"), Input.GetAxis ("Mouse Y"));
 //			Debug.Log ("pos = " + pos);
 			Vector3	mouse = Input.mousePosition;

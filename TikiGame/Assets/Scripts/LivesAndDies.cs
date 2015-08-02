@@ -9,6 +9,7 @@ public class LivesAndDies : MonoBehaviour {
 	public bool DisplayHealthBar;
     public Texture2D bgImage;
     public Texture2D fgImage;
+	public GameObject DeathEffect;
 
     public float healthBarLength = 8f;
 
@@ -42,6 +43,9 @@ public class LivesAndDies : MonoBehaviour {
 	}
 
 	void Die() {
+		if (DeathEffect != null)
+			Instantiate(DeathEffect, gameObject.transform.position, Quaternion.identity);
+		GetComponent<Animator>().SetBool("Dying",true);
 		Destroy (gameObject);
 	}
 }
