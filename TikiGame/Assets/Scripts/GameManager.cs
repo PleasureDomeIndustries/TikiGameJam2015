@@ -12,9 +12,6 @@ public class GameManager : MonoBehaviour
 	int numToSpawn = 30;
 	int numSpawned = 0;
 
-
-    int YouWinHeight = 100;
-    int YouWinWidth = 100;
     GameObject currentExit;
 
     public void AddEnemy(GameObject enemy)
