@@ -17,10 +17,10 @@ public class DoesDamage : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D co){
-		LivesAndDies damaged = co.gameObject.GetComponent<LivesAndDies> ();
-		if (damaged != null) {
-			Vector2 knock = (co.transform.position - transform.position).normalized * KnockBack;
-			damaged.TakeDamage(DamageDone, knock);
+		LivesAndDies thingToDamage = co.gameObject.GetComponent<LivesAndDies> ();
+		if (thingToDamage != null) {
+			Vector2 knockBack = (co.transform.position - transform.position).normalized * KnockBack;
+			thingToDamage.TakeDamage(DamageDone, knockBack);
 		}
 	}
 
