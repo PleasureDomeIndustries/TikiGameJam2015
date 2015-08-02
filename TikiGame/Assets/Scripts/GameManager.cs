@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     int YouWinHeight = 100;
     int YouWinWidth = 100;
+    GameObject currentExit;
 
     public void AddEnemy(GameObject enemy)
     {
@@ -23,16 +24,15 @@ public class GameManager : MonoBehaviour
     public void RemoveEnemy(GameObject enemy)
     {
         enemies.Remove(enemy);
+        Debug.Log("ENEMIES: " + enemies.Count);
     }
 
     public void OnGUI()
     {
-        Debug.Log("ENEMIES: " + enemies.Count);
         if (playing && enemies.Count == 0)
         {
-            Debug.Log("You win!");
             playing = false;
-            Application.LoadLevel("YouWin");
+            currentExit.GetComponent<ExitBehavior>().Enable();
         }
     }
 
@@ -75,6 +75,16 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         Application.LoadLevel("Level1");
+    }
+
+    public void NextLevel()
+    {
+        Application.LoadLevel(Application.loadedLevel + 1);
+    }
+
+    public void RegisterExit(GameObject exit)
+    {
+        this.currentExit = exit;
     }
 }
   
