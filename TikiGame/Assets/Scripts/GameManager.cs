@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Networking;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
 
     public static GameManager instance = null;
     bool playing = false;
     public bool gameInitialized = false;
     List<GameObject> enemies = new List<GameObject>();
-	int numToSpawn = 30;
+	int numToSpawn = 0;
 	int numSpawned = 0;
 
     GameObject currentExit;
@@ -24,8 +25,8 @@ public class GameManager : MonoBehaviour
 
     public void RemoveEnemy(GameObject enemy)
     {
-		//if (numSpawned++ < numToSpawn) SpawnEnemy(enemy);
-//		if (numSpawned++ < numToSpawn) SpawnEnemy(enemy);
+		if (numSpawned++ < numToSpawn) SpawnEnemy(enemy);
+		if (numSpawned++ < numToSpawn) SpawnEnemy(enemy);
 		enemies.Remove(enemy);
 		Debug.Log("ENEMIES: " + enemies.Count);
 	}
@@ -81,12 +82,23 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+
         Application.LoadLevel("Level1");
     }
 
     public void NextLevel()
     {
-        Application.LoadLevel(Application.loadedLevel + 1);
+        if (Application.loadedLevel + 1 == Application.levelCount - 1)
+        {
+            NetworkManager.singleton.ServerChangeScene("YouWin");
+        }
+        
+        else
+        {
+            numToSpawn = (Application.loadedLevel + 1) * 5;
+            numSpawned = 0;
+            NetworkManager.singleton.ServerChangeScene("Level" + (Application.loadedLevel + 1));
+        }
     }
 
     public void RegisterExit(GameObject exit)
