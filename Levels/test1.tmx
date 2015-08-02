@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" nextobjectid="11">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" nextobjectid="13">
  <tileset firstgid="1" name="evilcastle_A2" tilewidth="16" tileheight="16">
   <image source="//chrono/Public/Tiki Game Jam 2015/5evil-castle-tile-pack/Evil Castle Tile Pack/evilcastle_A2.png" width="512" height="384"/>
  </tileset>
@@ -91,6 +91,14 @@
   <tile id="90">
    <properties>
     <property name="SpawnEnemy" value="WereBeaver"/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="1277" name="Tile-set - Toen's Medieval Strategy (16x16) - v.1.0" tilewidth="16" tileheight="16">
+  <image source="//chrono/Public/Tiki Game Jam 2015/Medieval/Tile-set - Toen's Medieval Strategy (16x16) - v.1.0.png" trans="00ff7f" width="112" height="832"/>
+  <tile id="18">
+   <properties>
+    <property name="SpawnEnemy" value="Exit"/>
    </properties>
   </tile>
  </tileset>
@@ -1364,5 +1372,6 @@
   <object id="8" gid="1187" x="320" y="160" width="16" height="16"/>
   <object id="9" gid="1250" x="64" y="144" width="16" height="16"/>
   <object id="10" gid="1259" x="160" y="368" width="16" height="16"/>
+  <object id="12" gid="1295" x="368" y="384" width="16" height="16"/>
  </objectgroup>
 </map>
