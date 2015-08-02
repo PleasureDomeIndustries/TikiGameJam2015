@@ -3,28 +3,42 @@ using System.Collections;
 
 public class LivesAndDies : MonoBehaviour {
 
-	public int Health;
+	public int MaxHealth = 50;
+    int currentHealth;
+
 	public bool DisplayHealthBar;
+    public Texture2D bgImage;
+    public Texture2D fgImage;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public float healthBarLength = 8f;
 
-	public void TakeDamage(int damage, Vector2 knockBack) {
+    // Use this for initialization
+    void Start () {
+        //healthBarLength = Screen.width / 2;
+        currentHealth = MaxHealth;
+    }
+	
+	void OnGUI()
+    {
+
+        Vector2 targetPos;
+        targetPos = Camera.main.WorldToScreenPoint(transform.position);
+
+        GUI.Box(new Rect(targetPos.x - 25, Screen.height - targetPos.y - 50, 60, 20), currentHealth + "/" + MaxHealth);
+
+    }
+
+    public void TakeDamage(int damage, Vector2 knockBack) {
 		Debug.Log ("taking " + damage + " damage, knockback = " + knockBack.ToString ());
-		Health -= damage;
+		currentHealth -= damage;
 		CheckHealth ();
 		transform.position += (Vector3)knockBack;
 	}
 
 	void CheckHealth() {
-		if (Health < 0) Die();
+        healthBarLength = (Screen.width / 2) * (currentHealth / (float)MaxHealth);
+
+        if (currentHealth < 0) Die();
 	}
 
 	void Die() {
