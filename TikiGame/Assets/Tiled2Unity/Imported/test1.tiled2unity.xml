@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 8/1/2015 10:10:16 PM-->
+<!--Last exported: 8/1/2015 11:19:15 PM-->
 <Tiled2Unity version="0.9.11.2">
   <AssignMaterial mesh="mesh_[00]_[00]" material="evilcastle_A2" sortingLayerName="Background" sortingOrder="0" />
   <AssignMaterial mesh="mesh_[01]_[01]" material="evilcastle_A4" sortingLayerName="Blocking" sortingOrder="1" alphaColorKey="#000000" />
@@ -24,9 +24,6 @@
       </GameObject>
       <GameObject name="TileObject" x="40" y="-30" rotation="0">
         <Property name="SpawnEnemy" value="Imp" />
-      </GameObject>
-      <GameObject name="TileObject" x="-14" y="24" rotation="0">
-        <Property name="SpawnEnemy" value="Skeleton" />
       </GameObject>
       <GameObject name="TileObject" x="40" y="-20" rotation="0">
         <Property name="SpawnEnemy" value="Vampire" />

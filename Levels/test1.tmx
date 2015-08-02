@@ -1361,7 +1361,6 @@
  <objectgroup name="Enemies">
   <object id="3" gid="1169" x="64" y="272" width="16" height="16"/>
   <object id="4" gid="1178" x="320" y="240" width="16" height="16"/>
-  <object id="5" gid="1169" x="-112" y="-192" width="16" height="16"/>
   <object id="8" gid="1187" x="320" y="160" width="16" height="16"/>
   <object id="9" gid="1250" x="64" y="144" width="16" height="16"/>
   <object id="10" gid="1259" x="160" y="368" width="16" height="16"/>

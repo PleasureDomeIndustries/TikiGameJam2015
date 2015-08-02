@@ -12,11 +12,13 @@ public class LivesAndDies : MonoBehaviour {
 	public GameObject DeathEffect;
 
     public float healthBarLength = 8f;
+    public bool IsEnemy = true;
 
     // Use this for initialization
     void Start () {
         //healthBarLength = Screen.width / 2;
         currentHealth = MaxHealth;
+        if (IsEnemy) GameManager.instance.AddEnemy(gameObject);
     }
 	
 	void OnGUI()
@@ -46,6 +48,7 @@ public class LivesAndDies : MonoBehaviour {
 		if (DeathEffect != null)
 			Instantiate(DeathEffect, gameObject.transform.position, Quaternion.identity);
 		GetComponent<Animator>().SetBool("Dying",true);
+        GameManager.instance.RemoveEnemy(gameObject);
 		Destroy (gameObject);
 	}
 }

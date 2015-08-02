@@ -1,12 +1,40 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-    using System.Collections.Generic;       //Allows us to use Lists. 
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance = null;
+    bool playing = false;
+    public bool gameInitialized = false;
+    List<GameObject> enemies = new List<GameObject>();
+
+    int YouWinHeight = 100;
+    int YouWinWidth = 100;
+
+    public void AddEnemy(GameObject enemy)
+    {
+        playing = true;
+        enemies.Add(enemy);
+        Debug.Log("Enemy Added", gameObject);
+    }
+
+    public void RemoveEnemy(GameObject enemy)
+    {
+        enemies.Remove(enemy);
+    }
+
+    public void OnGUI()
+    {
+        Debug.Log("ENEMIES: " + enemies.Count);
+        if (playing && enemies.Count == 0)
+        {
+            Debug.Log("You win!");
+            playing = false;
+            GUI.Box((new Rect((Screen.width / 2) - (YouWinWidth / 2), (Screen.height / 2) - (YouWinHeight / 2), YouWinWidth, YouWinHeight)), "YOU ARE THE WINNERZ!");
+        }
+    }
 
     //Awake is always called before any Start functions
     void Awake()
@@ -36,7 +64,12 @@ public class GameManager : MonoBehaviour
     //Initializes the game for each level.
     void InitGame()
     {
-        Application.LoadLevel("Start");
+        if (!gameInitialized)
+        {
+            gameInitialized = true;
+            Application.LoadLevel("Start");
+        }
+        
     }
 
     public void StartGame()
