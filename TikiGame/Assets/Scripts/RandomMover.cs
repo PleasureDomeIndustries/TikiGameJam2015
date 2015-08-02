@@ -8,6 +8,7 @@ public class RandomMover : MonoBehaviour
     float maxDist = 4f;
     Vector2 rayCorrection;
     Vector2 currentTarget;
+    Vector2 lastPosition;
     Vector2 currentRaycastTarget;
     float distancePerUnit = 0.1f;
     Rigidbody2D body;
@@ -24,10 +25,11 @@ public class RandomMover : MonoBehaviour
 
     void FixedUpdate()
     {
+        /*
         if (Vector2.Distance((Vector2)body.position, currentTarget) < 0.1f)
         {
             GetNewTarget();
-        }
+        } */
 
         Vector2 moveto = Vector2.MoveTowards(body.position, currentTarget, distancePerUnit);
         RaycastHit2D h = Physics2D.Linecast(currentRaycastTarget, body.position);
@@ -39,38 +41,54 @@ public class RandomMover : MonoBehaviour
             collidername = collider.name;
         }
 
-        if (collidername == this.name)
+        //if it doesn't collide with a wall, go for it!
+        if (collidername == "WALL")
         {
-            float dirX = 0f;
-            float dirY = 0f;
-            Vector2 move =  moveto - body.position;
-            if (move.x > 0.05f)
-            {
-                dirX = 1;
-                dirY = 0;
-            } else if (move.x < -0.05f)
-                {
-                dirX = -1;
-                dirY = 0;
-            } else if (move.y > 0.05f)
-            {
-                dirX = 0;
-                dirY = 1;
-            } else if (move.y < -0.05f)
-            {
-                dirX = 0;
-                dirY = -1;
-            }
-            GetComponent<Animator>().SetFloat("DirX", dirX);
-            GetComponent<Animator>().SetFloat("DirY", dirY);
-            body.MovePosition(moveto);
+            //Debug.Log("Discarding " + currentRaycastTarget + " due to collision with " + collidername);
+            lastPosition = Vector2.zero;
+            GetNewTarget();
+        } else if (Vector2.Distance((Vector2)body.position, lastPosition) < 0.05f)
+        {
+            //Debug.Log("Difference between " + body.position.ToString() + " and " + lastPosition.ToString() + " is " + Vector2.Distance((Vector2)body.position, lastPosition).ToString());
+            lastPosition = Vector2.zero;
+            GetNewTarget();
         }
         else
         {
-            //Debug.Log("Discarding " + currentRaycastTarget + " due to collision with " + collidername);
-            GetNewTarget();
+            lastPosition = body.position;
+            HandleAnimation(moveto);
+            body.MovePosition(moveto);
         }
        
+    }
+
+    void HandleAnimation(Vector2 moveto)
+    {
+        float dirX = 0f;
+        float dirY = 0f;
+        Vector2 move = moveto - body.position;
+        if (move.x > 0.05f)
+        {
+            dirX = 1;
+            dirY = 0;
+        }
+        else if (move.x < -0.05f)
+        {
+            dirX = -1;
+            dirY = 0;
+        }
+        else if (move.y > 0.05f)
+        {
+            dirX = 0;
+            dirY = 1;
+        }
+        else if (move.y < -0.05f)
+        {
+            dirX = 0;
+            dirY = -1;
+        }
+        GetComponent<Animator>().SetFloat("DirX", dirX);
+        GetComponent<Animator>().SetFloat("DirY", dirY);
     }
 
 
