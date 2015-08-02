@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     public void RemoveEnemy(GameObject enemy)
     {
-		if (numSpawned++ < numToSpawn) SpawnEnemy(enemy);
+		//if (numSpawned++ < numToSpawn) SpawnEnemy(enemy);
 //		if (numSpawned++ < numToSpawn) SpawnEnemy(enemy);
 		enemies.Remove(enemy);
         Debug.Log("ENEMIES: " + enemies.Count);
