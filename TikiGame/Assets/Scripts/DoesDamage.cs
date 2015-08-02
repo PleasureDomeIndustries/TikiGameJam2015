@@ -23,6 +23,13 @@ public class DoesDamage : MonoBehaviour {
 		if (co.gameObject != Owner) {
 			LivesAndDies thingToDamage = co.gameObject.GetComponent<LivesAndDies> ();
 			if (thingToDamage != null) {
+
+				//Enemies should not damage enemies
+				if (thingToDamage.IsEnemy) {
+					LivesAndDies mine = gameObject.GetComponent<LivesAndDies>();
+					if (mine != null && mine.IsEnemy) return;
+				}
+
 				Vector2 knockBack = (co.transform.position - transform.position).normalized * KnockBack;
 				thingToDamage.TakeDamage(DamageDone, knockBack);
 			}
