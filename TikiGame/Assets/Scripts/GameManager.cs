@@ -21,22 +21,23 @@ public class GameManager : MonoBehaviour
         playing = true;
         enemies.Add(enemy);
         Debug.Log("Enemy Added", gameObject);
-    }
+		Debug.Log("ENEMIES: " + enemies.Count);
+	}
 
     public void RemoveEnemy(GameObject enemy)
     {
 		if (numSpawned++ < numToSpawn) SpawnEnemy(enemy);
-//		if (numSpawned++ < numToSpawn) SpawnEnemy(enemy);
+		if (numSpawned++ < numToSpawn) SpawnEnemy(enemy);
 		enemies.Remove(enemy);
+		Debug.Log("ENEMIES: " + enemies.Count);
 	}
 
 	void SpawnEnemy(GameObject enemy) {
-		Instantiate (enemy, enemy.transform.position, Quaternion.identity);
+		Instantiate (enemy, enemy.transform.position + Random.onUnitSphere * 5.0f, Quaternion.identity);
 	}
 
     public void OnGUI()
     {
-        Debug.Log("ENEMIES: " + enemies.Count);
         if (playing && enemies.Count == 0)
         {
             Debug.Log("You win!");
