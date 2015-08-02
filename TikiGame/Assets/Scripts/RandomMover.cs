@@ -10,7 +10,7 @@ public class RandomMover : MonoBehaviour
     Vector2 currentTarget;
     Vector2 lastPosition;
     Vector2 currentRaycastTarget;
-    float distancePerUnit = 0.1f;
+    public float distancePerUnit = 0.1f;
     Rigidbody2D body;
     System.Random rand;
 
