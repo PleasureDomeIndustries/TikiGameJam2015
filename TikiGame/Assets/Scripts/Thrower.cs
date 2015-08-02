@@ -17,6 +17,9 @@ public class Thrower : MonoBehaviour {
 
 	public void Throw(GameObject original, Vector2 direction) {
 		GameObject thrown = (GameObject)Instantiate (original, transform.position + (Vector3)direction.normalized * safeDistance, transform.rotation);
+		DoesDamage dmg = thrown.GetComponent<DoesDamage> ();
+		if (dmg != null)
+			dmg.Owner = gameObject;
 		thrown.GetComponent<Rigidbody2D> ().AddForce (direction.normalized * force);
 		Destroy (thrown, 2.0f);
 	}

@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DoesDamage : MonoBehaviour {
 
 	public int DamageDone;
 	public float KnockBack;
+	public List<GameObject> Immune = new List<GameObject>();
+	public GameObject Owner;
 
 	// Use this for initialization
 	void Start () {
@@ -17,10 +20,12 @@ public class DoesDamage : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D co){
-		LivesAndDies thingToDamage = co.gameObject.GetComponent<LivesAndDies> ();
-		if (thingToDamage != null) {
-			Vector2 knockBack = (co.transform.position - transform.position).normalized * KnockBack;
-			thingToDamage.TakeDamage(DamageDone, knockBack);
+		if (co.gameObject != Owner) {
+			LivesAndDies thingToDamage = co.gameObject.GetComponent<LivesAndDies> ();
+			if (thingToDamage != null) {
+				Vector2 knockBack = (co.transform.position - transform.position).normalized * KnockBack;
+				thingToDamage.TakeDamage(DamageDone, knockBack);
+			}
 		}
 	}
 
