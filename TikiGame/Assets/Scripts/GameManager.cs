@@ -12,9 +12,7 @@ public class GameManager : MonoBehaviour
 	int numToSpawn = 30;
 	int numSpawned = 0;
 
-
-    int YouWinHeight = 100;
-    int YouWinWidth = 100;
+    GameObject currentExit;
 
     public void AddEnemy(GameObject enemy)
     {
@@ -40,9 +38,8 @@ public class GameManager : MonoBehaviour
     {
         if (playing && enemies.Count == 0)
         {
-            Debug.Log("You win!");
             playing = false;
-            Application.LoadLevel("YouWin");
+            currentExit.GetComponent<ExitBehavior>().Enable();
         }
     }
 
@@ -85,6 +82,16 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         Application.LoadLevel("Level1");
+    }
+
+    public void NextLevel()
+    {
+        Application.LoadLevel(Application.loadedLevel + 1);
+    }
+
+    public void RegisterExit(GameObject exit)
+    {
+        this.currentExit = exit;
     }
 }
   

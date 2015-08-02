@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 8/1/2015 11:45:40 PM-->
+<!--Last exported: 8/2/2015 12:13:09 AM-->
 <Tiled2Unity version="0.9.11.2">
   <AssignMaterial mesh="mesh_[00]_[00]" material="evilcastle_A2" sortingLayerName="Background" sortingOrder="0" />
   <AssignMaterial mesh="mesh_[01]_[01]" material="evilcastle_A4" sortingLayerName="Blocking" sortingOrder="1" alphaColorKey="#000000" />
