@@ -26,10 +26,12 @@ public class LivesAndDies : MonoBehaviour {
     {
 
         Vector2 targetPos;
-        targetPos = Camera.main.WorldToScreenPoint(transform.position);
-
-        GUI.Box(new Rect(targetPos.x - 25, Screen.height - targetPos.y - 50, 60, 20), currentHealth + "/" + MaxHealth);
-
+		Camera cam = Camera.main;
+		if (cam != null) {
+			targetPos = cam.WorldToScreenPoint(transform.position);
+			
+			GUI.Box(new Rect(targetPos.x - 25, Screen.height - targetPos.y - 50, 60, 20), currentHealth + "/" + MaxHealth);
+		}
     }
 
     public void TakeDamage(int damage, Vector2 knockBack) {
